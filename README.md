@@ -37,6 +37,8 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
 ```
 ### Opening other pages
 To open another page from your page, simply execute the following method. ``MonkeStatistics.Core.UIManager.Instance.ShowPage(typeof(MyPage))``. However if you are in a class that inherits ``Page`` you can simply do ``ShowPage``. It is VERY important to remember that ever page with the ``[DisplayInMainMenu("My Displayname")]`` attribute will appear in the MainMenu when the watch is opened. If you do not want it to appear so, simply remove that attribute.
+### Overriding back button
+If you decide to override the back button, you MUST reset it once you are done with it. ``SetBackButtonOverride(Type MyPage)``. This method can only be called inside of the Page class, or in a subclass of it.
 ### 
 ### Project Info
 * Position : 0.0288 0.0267 -0.004
