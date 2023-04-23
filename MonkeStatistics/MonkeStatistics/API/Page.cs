@@ -17,18 +17,10 @@ namespace MonkeStatistics.API
         /// the value is whether or not the line 
         /// it will be a toggle.
         /// </summary>
-        public Dictionary<string, ButtonInfo> TextLines = new Dictionary<string, ButtonInfo>();
+        public Dictionary<string, ButtonInfo> TextLines = new Dictionary<string,  ButtonInfo>();
         public virtual void OnPageOpen()
         {
 
-        }
-
-        /// <summary>
-        /// This method will be invoked when a button is activated.
-        /// </summary>
-        public virtual void ButtonActivation(object Sender, object[] objects)
-        {
-            Debug.Log("Button pressed : " + objects);
         }
 
         /// <summary>

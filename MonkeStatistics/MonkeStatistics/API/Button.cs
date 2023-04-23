@@ -28,7 +28,7 @@ namespace MonkeStatistics.API
                 Info.RaiseEvent(isOn);
             }
             else
-                ButtonActivationDelay();
+               StartCoroutine(ButtonActivationDelay());
         }
 
         private IEnumerator ButtonActivationDelay()
@@ -55,11 +55,27 @@ namespace MonkeStatistics.API
 
         public int ReturnIndex;
         public delegate void EventHandler(object Sender, object[] Args);
+        /// <summary>
+        /// The buttons press event will return a object, formatting:
+        /// (int) ReturnIndex, (bool)IsOn, (bool)Toggle
+        /// </summary>
         public event EventHandler ButtonPressed;
         public void RaiseEvent(bool IsOn)
         {
+            Debug.Log("Event raised " + ReturnIndex);
             object[] Args = new object[] { ReturnIndex, IsOn, Toggle };
             ButtonPressed?.Invoke(this, Args);
+        }
+
+        /// <summary>
+        /// Line button info
+        /// </summary>
+        public ButtonInfo(EventHandler ButtonPressed, int ReturnIndex, bool Toggle = false, bool InitialIsOn = false)
+        {
+            this.ButtonPressed = ButtonPressed;
+            this.ReturnIndex = ReturnIndex;
+            this.Toggle = Toggle;
+            this.InitialIsOn = InitialIsOn;
         }
     }
 }

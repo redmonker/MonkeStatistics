@@ -19,6 +19,7 @@ namespace MonkeStatistics.Core.Behaviors
             buttonRenderer.material = unpressedMaterial;
             gameObject.layer = 18;
         }
+
         public override void ButtonActivation()
         {
             base.ButtonActivation();

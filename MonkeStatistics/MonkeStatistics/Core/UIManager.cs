@@ -41,7 +41,7 @@ namespace MonkeStatistics.Core
 
             RegisterPages();
             ShowPage(typeof(MainPage));
-            MenuObj.SetActive(true);
+            MenuObj.SetActive(false);
         }
         public void WatchButtonPressed() =>
             MenuObj.SetActive(!MenuObj.activeSelf);

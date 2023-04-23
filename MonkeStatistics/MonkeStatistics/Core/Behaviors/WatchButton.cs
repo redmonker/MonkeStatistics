@@ -23,6 +23,14 @@ namespace MonkeStatistics.Core.Behaviors
             //StartCoroutine(ButtonDelay());
             UIManager.Instance.WatchButtonPressed();
         }
+        private void Update()
+        {
+            return;
+            float Distance = Vector3.Distance(GorillaLocomotion.Player.Instance.rightHandTransform.right, Vector3.up);
+            bool OpenMenu = Distance <= 0.5;
+            if (!OpenMenu && UIManager.Instance.MenuObj.activeSelf)
+                UIManager.Instance.MenuObj.SetActive(false);
+        }
 
         private IEnumerator ButtonDelay()
         {
