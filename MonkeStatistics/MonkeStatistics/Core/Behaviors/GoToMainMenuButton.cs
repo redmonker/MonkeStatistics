@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace MonkeStatistics.Core.Behaviors
 {
     internal class GoToMainMenuButton : GorillaPressableButton
     {
+        public static Type ReturnPage;
         public override void Start()
         {
             BoxCollider boxCollider = GetComponent<BoxCollider>();
@@ -24,7 +26,7 @@ namespace MonkeStatistics.Core.Behaviors
         {
             base.ButtonActivation();
             StartCoroutine(ButtonDelay());
-            UIManager.Instance.ShowPage(typeof(Pages.MainPage));
+            UIManager.Instance.ShowPage(ReturnPage);
         }
 
         private IEnumerator ButtonDelay()

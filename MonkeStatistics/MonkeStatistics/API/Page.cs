@@ -39,6 +39,14 @@ namespace MonkeStatistics.API
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Title").GetComponent<Text>().text = text;
         public void SetAuthor(string text) =>
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Author").GetComponent<Text>().text = text;
+        /// <summary>
+        /// If you change this value you MUST reset it to the Core.Pages.MainMenu
+        /// </summary>
+        /// <param name="type">Page to return to.</param>
+        public void SetBackButtonOverride(Type type)
+        {
+            Core.Behaviors.GoToMainMenuButton.ReturnPage = type;
+        }
 
         public void SetLines()
         {

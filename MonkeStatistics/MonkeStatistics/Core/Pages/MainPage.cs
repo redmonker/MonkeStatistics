@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MonkeStatistics.Core.Pages
 {
-    internal class MainPage : Page
+    public class MainPage : Page
     {
         public override void OnPageOpen()
         {
@@ -22,8 +22,8 @@ namespace MonkeStatistics.Core.Pages
                     TextLines.Add(Attribute.DisplayName, new ButtonInfo(Info_ButtonPressed, SearchIndex));
                 SearchIndex++;
             }
-            Debug.Log(TextLines.Count);
-            
+            Behaviors.GoToMainMenuButton.ReturnPage = typeof(MainPage);
+
             SetLines();
             SetTitle(Main.Name);
             SetAuthor("By " + Main.Author);

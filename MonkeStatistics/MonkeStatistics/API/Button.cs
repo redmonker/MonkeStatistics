@@ -21,7 +21,7 @@ namespace MonkeStatistics.API
         public override void ButtonActivation()
         {
             base.ButtonActivation();
-            if (Info.Toggle)
+            if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
             {
                 isOn = !isOn;
                 UpdateColor();
@@ -47,7 +47,7 @@ namespace MonkeStatistics.API
 
     public class ButtonInfo
     {
-        public bool Toggle;
+        public ButtonType buttonType;
         /// <summary>
         /// When the button is written this will be the initial state of the button.
         /// </summary>
@@ -63,19 +63,25 @@ namespace MonkeStatistics.API
         public void RaiseEvent(bool IsOn)
         {
             Debug.Log("Event raised " + ReturnIndex);
-            object[] Args = new object[] { ReturnIndex, IsOn, Toggle };
+            object[] Args = new object[] { ReturnIndex, IsOn, buttonType };
             ButtonPressed?.Invoke(this, Args);
         }
 
         /// <summary>
         /// Line button info
         /// </summary>
-        public ButtonInfo(EventHandler ButtonPressed, int ReturnIndex, bool Toggle = false, bool InitialIsOn = false)
+        public ButtonInfo(EventHandler ButtonPressed, int ReturnIndex, ButtonType Type = ButtonType.Press, bool InitialIsOn = false)
         {
             this.ButtonPressed = ButtonPressed;
             this.ReturnIndex = ReturnIndex;
-            this.Toggle = Toggle;
+            this.buttonType = Type;
             this.InitialIsOn = InitialIsOn;
+        }
+
+        public enum ButtonType
+        {
+            Toggle,
+            Press
         }
     }
 }
