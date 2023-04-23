@@ -31,10 +31,13 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
         {
           int ReturnId = (int)Args[0];
           bool IsOn = (bool)Args[1];
-          bool IsToggleButton = (ButtonType)Args[2]; // button type
+          ButtonInfo.ButtonType buttonType = (ButtonInfo.ButtonType)Args[2]; // button type
         }
     }
 ```
+### Opening other pages
+To open another page from your page, simply execute the following method. ``MonkeStatistics.Core.UIManager.Instance.ShowPage(typeof(MyPage))``. However if you are in a class that inherits ``Page`` you can simply do ``ShowPage``. It is VERY important to remember that ever page with the ``[DisplayInMainMenu("My Displayname")]`` attribute will appear in the MainMenu when the watch is opened. If you do not want it to appear so, simply remove that attribute.
+### 
 ### Project Info
 * Position : 0.0288 0.0267 -0.004
 * Rotation : -26.97 94.478 -93.21101
