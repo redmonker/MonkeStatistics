@@ -52,6 +52,7 @@ namespace MonkeStatistics.API
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Title").GetComponent<Text>().text = text;
         public void SetAuthor(string text) =>
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Author").GetComponent<Text>().text = text;
+        // Thanks to Dev & Kyle for suggesting overloading the AddLine method.
         public void AddLine(int Amount, string Text = "", ButtonInfo Info = null)
         {
             for (int i = 0; i < Amount; i++)
