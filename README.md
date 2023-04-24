@@ -20,9 +20,9 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
 		AddLine("My Line", new ButtonInfo); // add a line
 		AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
 
-            SetTitle("Gorilla Scoreboard"); // sets the title field
-            SetAuthor(""); // sets the author field
-            SetLines(); // sets all lines as TextLines. 
+		SetTitle("Gorilla Scoreboard"); // sets the title field
+            	SetAuthor(""); // sets the author field
+            	SetLines(); // sets all lines as TextLines. 
         }
 
         private void EventMethod_handler(object Sender, object[] Args)
