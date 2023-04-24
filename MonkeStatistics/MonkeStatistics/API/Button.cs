@@ -21,7 +21,7 @@ namespace MonkeStatistics.API
 
         public override void ButtonActivation()
         {
-            if (_Time + 0.5 > Time.realtimeSinceStartup)
+            if (_Time + 1 > Time.realtimeSinceStartup)
                 return;
             _Time = Time.realtimeSinceStartup;
 
@@ -33,7 +33,7 @@ namespace MonkeStatistics.API
                 Info.RaiseEvent(isOn);
             }
             else
-               StartCoroutine(ButtonActivationDelay());
+                StartCoroutine(ButtonActivationDelay());
         }
 
         private IEnumerator ButtonActivationDelay()
@@ -79,7 +79,7 @@ namespace MonkeStatistics.API
         {
             this.ButtonPressed = ButtonPressed;
             this.ReturnIndex = ReturnIndex;
-            this.buttonType = Type;
+            buttonType = Type;
             this.InitialIsOn = InitialIsOn;
         }
 

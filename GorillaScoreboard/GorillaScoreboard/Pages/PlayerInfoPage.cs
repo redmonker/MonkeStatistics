@@ -1,4 +1,5 @@
-﻿using MonkeStatistics.API;
+﻿using HarmonyLib;
+using MonkeStatistics.API;
 using UnityEngine;
 
 namespace GorillaScoreboard.Pages
@@ -24,15 +25,15 @@ namespace GorillaScoreboard.Pages
         private void MutePlayer_ButtonPressed(object Sender, object[] Args)
         {
             var player = MyPage.SelectedPlayer;
-            bool IsMuted = PlayerPrefs.GetInt(player.UserId, 0) != 0;
+            bool IsMuted = PlayerPrefs.GetInt(player.UserId) == 1;
 
             if (IsMuted)
                 PlayerPrefs.SetInt(player.UserId, 0);
             else
                 PlayerPrefs.SetInt(player.UserId, 1);
-            foreach (GorillaScoreBoard scoreboard in GameObject.FindObjectsOfType<GorillaScoreBoard>())
-                scoreboard.RedrawPlayerLines();
 
+            foreach (GorillaScoreBoard scoreboard in GameObject.FindObjectsOfType<GorillaScoreBoard>())
+                Traverse.Create(scoreboard).Method("InfrequentUpdate");
             // redraw
             OnPageOpen();
         }

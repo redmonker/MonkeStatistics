@@ -2,6 +2,7 @@
     This script was inspired by the ComputerInterface mod.
 */
 using MonkeStatistics.API;
+using MonkeStatistics.Core.Behaviors;
 using MonkeStatistics.Core.Pages;
 using System;
 using System.Linq;
@@ -36,6 +37,9 @@ namespace MonkeStatistics.Core
 
             BaseLine = ButtonGrouping.GetChild(0);
             BaseLine.gameObject.SetActive(false);
+
+            MenuTransform.GetChild(0).Find("Left").gameObject.AddComponent<CustomMainButton>().IsLeft = true;
+            MenuTransform.GetChild(0).Find("Right").gameObject.AddComponent<CustomMainButton>();
 
             MenuObj.transform.GetChild(0).Find("ReturnMain").gameObject.AddComponent<Behaviors.GoToMainMenuButton>();
 

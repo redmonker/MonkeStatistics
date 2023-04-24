@@ -10,6 +10,7 @@ namespace GorillaScoreboard.Pages
     internal class MyPage : Page
     {
         public static Player SelectedPlayer;
+        public bool IsOpen;
         public override void OnPageOpen()
         {
             base.OnPageOpen();
@@ -19,7 +20,7 @@ namespace GorillaScoreboard.Pages
                 {
                     Player player = GorillaScoreBoardPatch.Lines[i].linePlayer;
                     bool IsLocal = player.IsLocal;
-                    bool IsMuted = PlayerPrefs.GetInt(player.UserId, 0) != 0;
+                    bool IsMuted = PlayerPrefs.GetInt(player.UserId) == 1;
                     ButtonInfo Info = IsLocal ? null : new ButtonInfo(Info_ButtonPressed, i, ButtonInfo.ButtonType.Toggle, IsMuted);
                     AddLine(player.NickName, Info);
                 }

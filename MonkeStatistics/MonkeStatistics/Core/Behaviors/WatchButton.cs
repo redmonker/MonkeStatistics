@@ -25,9 +25,8 @@ namespace MonkeStatistics.Core.Behaviors
         }
         private void Update()
         {
-            return;
-            float Distance = Vector3.Distance(GorillaLocomotion.Player.Instance.rightHandTransform.right, Vector3.up);
-            bool OpenMenu = Distance <= 0.5;
+            float Distance = Vector3.Distance(transform.forward, Vector3.up);
+            bool OpenMenu = Distance <= 0.65 ;
             if (!OpenMenu && UIManager.Instance.MenuObj.activeSelf)
                 UIManager.Instance.MenuObj.SetActive(false);
         }
