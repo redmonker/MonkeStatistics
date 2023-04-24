@@ -2,23 +2,27 @@
     This script was inspired by the ComputerInterface mod.
 */
 using MonkeStatistics.API;
-using MonkeStatistics.Core.Behaviors;
 using MonkeStatistics.Core.Pages;
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace MonkeStatistics.Core
 {
     internal class UIManager
     {
         public static UIManager Instance;
+        public static Page CurrentPage;
 
         private GameObject WatchObj;
         public GameObject MenuObj;
 
         public Transform BaseLine;
         public Transform ButtonGrouping;
+
+        public GameObject ScrollUp;
+        public GameObject ScrollDown;
 
         public UIManager(GameObject Watch)
         {
@@ -38,10 +42,15 @@ namespace MonkeStatistics.Core
             BaseLine = ButtonGrouping.GetChild(0);
             BaseLine.gameObject.SetActive(false);
 
-            MenuTransform.GetChild(0).Find("Left").gameObject.AddComponent<CustomMainButton>().IsLeft = true;
-            MenuTransform.GetChild(0).Find("Right").gameObject.AddComponent<CustomMainButton>();
+            #region Additional buttons
+            Transform Panel = MenuTransform.GetChild(0);
+            ScrollUp = Panel.Find("Up").gameObject;
+            ScrollDown = Panel.Find("Down").gameObject;
 
-            MenuObj.transform.GetChild(0).Find("ReturnMain").gameObject.AddComponent<Behaviors.GoToMainMenuButton>();
+            ScrollUp.AddComponent<Behaviors.ScrollButton>().IsUp = true;
+            ScrollDown.AddComponent<Behaviors.ScrollButton>();
+            Panel.Find("ReturnMain").gameObject.AddComponent<Behaviors.GoToMainMenuButton>();
+            #endregion
 
             RegisterPages();
             ShowPage(typeof(MainPage));
@@ -59,6 +68,7 @@ namespace MonkeStatistics.Core
             {
                 Page page = (Page)Activator.CreateInstance(type);
                 page.OnPageOpen();
+                CurrentPage = page;
                 Debug.Log("Page opened : " + type.Name);
             }
             else

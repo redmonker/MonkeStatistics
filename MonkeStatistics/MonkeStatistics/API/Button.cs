@@ -1,31 +1,21 @@
-﻿using System.Collections;
+﻿using MonkeStatistics.Core.Behaviors;
+using System.Collections;
 using UnityEngine;
 
 namespace MonkeStatistics.API
 {
-    internal class Button : GorillaPressableButton
+    internal class Button : PreConfiguredButton
     {
         public ButtonInfo Info;
-        private float _Time;
         public override void Start()
         {
-            WardrobeItemButton wardrobeItemButton = UnityEngine.Object.FindObjectOfType<WardrobeItemButton>();
-
-            buttonRenderer = GetComponent<MeshRenderer>();
-            pressedMaterial = wardrobeItemButton.pressedMaterial;
-            unpressedMaterial = wardrobeItemButton.unpressedMaterial;
-
+            base.Start(); 
             isOn = Info.InitialIsOn;
             UpdateColor();
         }
 
         public override void ButtonActivation()
         {
-            if (_Time + 1 > Time.realtimeSinceStartup)
-                return;
-            _Time = Time.realtimeSinceStartup;
-
-            base.ButtonActivation();
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
             {
                 isOn = !isOn;
@@ -33,20 +23,7 @@ namespace MonkeStatistics.API
                 Info.RaiseEvent(isOn);
             }
             else
-                StartCoroutine(ButtonActivationDelay());
-        }
-
-        private IEnumerator ButtonActivationDelay()
-        {
-            isOn = true;
-            UpdateColor();
-
-            // execute button activation
-            Info.RaiseEvent(true);
-
-            yield return new WaitForSeconds(0.20f);
-            isOn = false;
-            UpdateColor();
+                StartCoroutine(ButtonDelay());
         }
     }
 

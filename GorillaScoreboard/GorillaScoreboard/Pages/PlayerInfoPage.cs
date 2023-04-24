@@ -13,7 +13,7 @@ namespace GorillaScoreboard.Pages
             var player = MyPage.SelectedPlayer;
             bool IsMuted = PlayerPrefs.GetInt(player.UserId, 0) != 0;
 
-            AddLines(3);
+            AddLine(3);
             AddLine(IsMuted ? "Unmute" : "Mute", new ButtonInfo(MutePlayer_ButtonPressed, 0, ButtonInfo.ButtonType.Toggle, IsMuted));
 
             SetTitle(player.NickName);
