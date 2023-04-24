@@ -18,11 +18,11 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
         public override void OnPageOpen() // this method will execute when this page is opened through the UIManager
         {
 		AddLine("My Line", new ButtonInfo); // add a line
-		AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
-
+		// Deprecated : AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
+		AddLine(6, "MultipleLines");
 		SetTitle("Gorilla Scoreboard"); // sets the title field
-            	SetAuthor(""); // sets the author field
-            	SetLines(); // sets all lines as TextLines. 
+            SetAuthor(""); // sets the author field
+            SetLines(); // sets all lines as TextLines. 
         }
 
         private void EventMethod_handler(object Sender, object[] Args)
