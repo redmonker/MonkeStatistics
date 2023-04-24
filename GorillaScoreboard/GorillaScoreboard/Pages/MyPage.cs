@@ -26,7 +26,10 @@ namespace GorillaScoreboard.Pages
                 }
             }
             else
-                AddLine("You are not currently in a room!", null);
+            {
+                AddLine("You are not");
+                AddLine("currently in a room!");
+            }
             SetTitle("Gorilla Scoreboard");
             SetAuthor("");
             SetLines();

@@ -67,10 +67,23 @@ namespace MonkeStatistics.API
                 AddLine(Text, buttonInfo);
         }
 
+        /// <summary>
+        /// Updates all currently displayed lines, to the TextLines text.
+        /// </summary>
+        public void UpdateLines()
+        {
+            VerifyScene();
+            for (int i = CurrentScene * EntriesPerScene; i < GetLinesToDisplay(); i++)
+            {
+                Transform Line = UIManager.Instance.ButtonGrouping.GetChild(i - CurrentScene * EntriesPerScene + 1);
+                Line.GetComponent<Text>().text = TextLines.ElementAt(i).Text;
+            }
+        }
         public void SetLines()
         {
             if (TextLines == null)
                 return;
+            AddLine(1);
             UIManager.Instance.ClearPage();
             Transform BaseButton = UIManager.Instance.BaseLine;
             VerifyScene();
@@ -108,7 +121,7 @@ namespace MonkeStatistics.API
             else
                 GetButtonUp(true);
             // If the scene is too high, disable the scroll down button.
-            if (CurrentScene >= TextLines.Length / EntriesPerScene - 1)
+            if (CurrentScene >= TextLines.Length / EntriesPerScene)
                 GetButtonDown(false);
             else
                 GetButtonDown(true);

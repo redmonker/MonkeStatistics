@@ -21,29 +21,32 @@ namespace SpeedBoost.Pages
             SetAuthor("By Crafterbot");
         }
 
-        private void Build()
+        private void Build(bool setLines = true)
         {
             TextLines = new Line[0]; // reset
             AddLine("Toggle", new ButtonInfo(ToggleSpeedBoost, 0, ButtonInfo.ButtonType.Toggle, Main.Enabled));
             AddLine(1);
-            AddLine($"Speed[{Main.SpeedBoost}]", null);
+            AddLine($"Speed[{Main.SpeedBoost}]");
             AddLine(1);
-            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, -1, ButtonInfo.ButtonType.Press));
-            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, 1, ButtonInfo.ButtonType.Press));
-            SetLines();
-            // Recommended 10 lines
+            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, 1, ButtonInfo.ButtonType.Press));
+            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, -1, ButtonInfo.ButtonType.Press));
+            AddLine(10);
+            AddLine("By");
+            AddLine("Crafterbot");
+            if (setLines)
+                SetLines();
         }
 
         #region Events
         public void ToggleSpeedBoost(object Sender, object[] Args)
         {
             Main.Enabled = (bool)Args[1];
-            Build();
         }
         public void SpeedBoostChange(object Sender, object[] Args)
         {
-            Main.SpeedBoost += (float)Args[0];
-            Build();
+            Main.SpeedBoost += (int)Args[0];
+            Build(false);
+            UpdateLines();
         }
         #endregion
     }

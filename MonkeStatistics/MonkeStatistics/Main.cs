@@ -18,7 +18,10 @@ namespace MonkeStatistics
             Logger.LogInfo("Init : " + Name);
             new Util.AssetLoader();
             new Harmony(GUID).PatchAll(Assembly.GetExecutingAssembly());
-            API.Registry.AddAssembly(); // This is only used for the debugging page, EntriesSpam.cs
+#if DEBUG
+            Logger.LogInfo("Debug mode enabled");
+            API.Registry.AddAssembly();
+#endif
         }
     }
 }

@@ -18,12 +18,13 @@ namespace MonkeStatistics.API
         {
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
             {
-                isOn = !isOn;
-                UpdateColor();
-                Info.RaiseEvent(isOn);
+                StartCoroutine(ToggleDelay(Info));
             }
             else
+            {
                 StartCoroutine(ButtonDelay());
+                Info.RaiseEvent(true);
+            }
         }
     }
 
@@ -48,7 +49,6 @@ namespace MonkeStatistics.API
             object[] Args = new object[] { ReturnIndex, IsOn, buttonType };
             ButtonPressed?.Invoke(this, Args);
         }
-
         /// <summary>
         /// Line button info
         /// </summary>
