@@ -11,7 +11,7 @@ namespace MonkeStatistics.Core.Pages
     {
         public override void OnPageOpen()
         {
-            TextLines = new System.Collections.Generic.Dictionary<string, ButtonInfo>();
+            base.OnPageOpen();
 
             // search through AllPages in UIManager for API.DisplayInMainMenu
             int SearchIndex = 0;
@@ -19,7 +19,7 @@ namespace MonkeStatistics.Core.Pages
             {
                 var Attribute = page.GetCustomAttributes(typeof(DisplayInMainMenu), false).FirstOrDefault() as DisplayInMainMenu;
                 if (Attribute != null)
-                    TextLines.Add(Attribute.DisplayName, new ButtonInfo(Info_ButtonPressed, SearchIndex));
+                    AddLine(Attribute.DisplayName, new ButtonInfo(Info_ButtonPressed, SearchIndex, ButtonInfo.ButtonType.Press, false));
                 SearchIndex++;
             }
             Behaviors.GoToMainMenuButton.ReturnPage = typeof(MainPage);

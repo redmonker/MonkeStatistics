@@ -6,6 +6,7 @@ namespace MonkeStatistics.API
     internal class Button : GorillaPressableButton
     {
         public ButtonInfo Info;
+        private float _Time;
         public override void Start()
         {
             WardrobeItemButton wardrobeItemButton = UnityEngine.Object.FindObjectOfType<WardrobeItemButton>();
@@ -20,6 +21,10 @@ namespace MonkeStatistics.API
 
         public override void ButtonActivation()
         {
+            if (_Time + 0.5 > Time.realtimeSinceStartup)
+                return;
+            _Time = Time.realtimeSinceStartup;
+
             base.ButtonActivation();
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
             {

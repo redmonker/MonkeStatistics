@@ -3,7 +3,6 @@
 */
 using MonkeStatistics.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,12 +16,19 @@ namespace MonkeStatistics.API
         /// the value is whether or not the line 
         /// it will be a toggle.
         /// </summary>
-        public Dictionary<string, ButtonInfo> TextLines = new Dictionary<string,  ButtonInfo>();
+        public Line[] TextLines;
         public virtual void OnPageOpen()
         {
-
+            TextLines = new Line[0];
         }
-
+        /// <summary>
+        /// If you change this value you MUST reset it to the Core.Pages.MainMenu
+        /// </summary>
+        /// <param name="type">Page to return to.</param>
+        public void SetBackButtonOverride(Type type)
+        {
+            Core.Behaviors.GoToMainMenuButton.ReturnPage = type;
+        }
         /// <summary>
         /// A shortcut to the UIManager's ShowPage method.
         /// </summary>
@@ -34,18 +40,19 @@ namespace MonkeStatistics.API
         /// </summary>
         public void GoToMainPage() =>
             UIManager.Instance.ShowPage(typeof(Core.Pages.MainPage));
+
+
         #region Text
         public void SetTitle(string text) =>
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Title").GetComponent<Text>().text = text;
         public void SetAuthor(string text) =>
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Author").GetComponent<Text>().text = text;
-        /// <summary>
-        /// If you change this value you MUST reset it to the Core.Pages.MainMenu
-        /// </summary>
-        /// <param name="type">Page to return to.</param>
-        public void SetBackButtonOverride(Type type)
+        public void AddLine(string Text, ButtonInfo Info) =>
+            TextLines = TextLines.Append(new Line(Text, Info)).ToArray();
+        public void AddLines(int Amount, string Text = "", ButtonInfo buttonInfo = null)
         {
-            Core.Behaviors.GoToMainMenuButton.ReturnPage = type;
+            for (int i = 0; i < Amount; i++)
+                AddLine(Text, buttonInfo);
         }
 
         public void SetLines()
@@ -54,17 +61,17 @@ namespace MonkeStatistics.API
                 return;
             UIManager.Instance.ClearPage();
             Transform BaseButton = UIManager.Instance.BaseLine;
-            for (int i = 0; i < TextLines.Count; i++)
+            for (int i = 0; i < TextLines.Length; i++)
             {
                 GameObject NewLine = GameObject.Instantiate(BaseButton.gameObject, BaseButton.parent);
-                NewLine.GetComponent<Text>().text = TextLines.ElementAt(i).Key;
-                if (TextLines.ElementAt(i).Value != null)
+                NewLine.GetComponent<Text>().text = TextLines.ElementAt(i).Text;
+                if (TextLines.ElementAt(i).Info != null)
                 {
                     GameObject Btn = NewLine.transform.GetChild(0).gameObject;
                     Btn.gameObject.SetActive(true);
                     Btn.layer = 18;
                     Button BtnObj = Btn.AddComponent<Button>();
-                    BtnObj.Info = TextLines.ElementAt(i).Value;
+                    BtnObj.Info = TextLines.ElementAt(i).Info;
                 }
                 else
                     NewLine.transform.GetChild(0).gameObject.SetActive(false);
@@ -73,5 +80,16 @@ namespace MonkeStatistics.API
             Debug.Log("SetLines");
         }
         #endregion
+    }
+
+    public class Line
+    {
+        public string Text;
+        public ButtonInfo Info;
+        public Line(string text, ButtonInfo info)
+        {
+            Text = text;
+            Info = info;
+        }
     }
 }

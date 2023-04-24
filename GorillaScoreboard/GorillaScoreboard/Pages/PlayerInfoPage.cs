@@ -1,5 +1,4 @@
 ﻿using MonkeStatistics.API;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GorillaScoreboard.Pages
@@ -8,18 +7,14 @@ namespace GorillaScoreboard.Pages
     {
         public override void OnPageOpen()
         {
+            base.OnPageOpen();
+
             var player = MyPage.SelectedPlayer;
             bool IsMuted = PlayerPrefs.GetInt(player.UserId, 0) != 0;
 
-            TextLines = new Dictionary<string, ButtonInfo>()
-            {
-                //{ "Player Name : " + player.NickName, null},
-                { "", null }, // place holder
-                { "", null }, // place holder
-                { "", null }, // place holder
+            AddLines(3);
+            AddLine(IsMuted ? "Unmute" : "Mute", new ButtonInfo(MutePlayer_ButtonPressed, 0, ButtonInfo.ButtonType.Toggle, IsMuted));
 
-                { "Mute Player", new ButtonInfo(MutePlayer_ButtonPressed, 0, ButtonInfo.ButtonType.Toggle, IsMuted) }
-            };
             SetTitle(player.NickName);
             SetAuthor("");
             SetLines();
@@ -35,6 +30,11 @@ namespace GorillaScoreboard.Pages
                 PlayerPrefs.SetInt(player.UserId, 0);
             else
                 PlayerPrefs.SetInt(player.UserId, 1);
+            foreach (GorillaScoreBoard scoreboard in GameObject.FindObjectsOfType<GorillaScoreBoard>())
+                scoreboard.RedrawPlayerLines();
+
+            // redraw
+            OnPageOpen();
         }
     }
 }
