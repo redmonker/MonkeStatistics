@@ -20,9 +20,9 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
 		AddLine("My Line", new ButtonInfo); // add a line
 		AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
 
-            SetTitle("Gorilla Scoreboard"); // sets the title field
-            SetAuthor(""); // sets the author field
-            SetLines(); // sets all lines as TextLines. 
+		SetTitle("Gorilla Scoreboard"); // sets the title field
+            	SetAuthor(""); // sets the author field
+            	SetLines(); // sets all lines as TextLines. 
         }
 
         private void EventMethod_handler(object Sender, object[] Args)
@@ -42,6 +42,7 @@ If you decide to override the back button, you MUST reset it once you are done w
 * Position : 0.0288 0.0267 -0.004
 * Rotation : -26.97 94.478 -93.21101
 ## Credits & Legal
+* This mod was inspired by [ComputerInterface](https://github.com/ToniMacaroni/ComputerInterface) and [RedBrumbler](https://github.com/RedBrumbler).
 * 3D watch model by [Zulubo](http://www.zulubo.com/).
 * 3D watch model was downloaded from the Unity Asset store.
 * This product is not affiliated with Gorilla Tag or Another Axiom LLC and is not endorsed or otherwise sponsored by Another Axiom LLC. Portions of the materials contained herein are property of Another Axiom LLC. © 2021 Another Axiom LLC.
