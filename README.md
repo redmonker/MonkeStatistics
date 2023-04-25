@@ -17,11 +17,17 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
     {
         public override void OnPageOpen() // this method will execute when this page is opened through the UIManager
         {
-	    AddLine("My Line", new ButtonInfo); // add a line
+	    AddLine("My Line", new ButtonInfo()); // add a line
  	    // Deprecated : AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
-	    AddLine(6, "MultipleLines");
+	    AddLine(6, "MultipleLines", new ButtonInfo());
+	    
+	    // Note the addLines method can also add plane text by doing:
+	    AddLine("My text");
+	    // or
+	    AddLine(3); // emty spacing
+	    
  	    SetTitle("Gorilla Scoreboard"); // sets the title field
-            SetAuthor(""); // sets the author field
+            SetAuthor("By Crafterbot"); // sets the author field
             SetLines(); // sets all lines as TextLines. 
         }
 
@@ -30,6 +36,9 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
           int ReturnId = (int)Args[0];
           bool IsOn = (bool)Args[1];
           ButtonInfo.ButtonType buttonType = (ButtonInfo.ButtonType)Args[2]; // button type
+
+	   // To prevent feedback loops, never redraw the page when the player is touching a button. Instead
+	   // Use UpdateLines(); method.
         }
     }
 ```
