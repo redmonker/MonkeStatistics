@@ -45,7 +45,7 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
 ### Opening other pages
 To open another page from your page, simply execute the following method. ``MonkeStatistics.Core.UIManager.Instance.ShowPage(typeof(MyPage))``. However if you are in a class that inherits ``Page`` you can simply do ``ShowPage``. It is VERY important to remember that ever page with the ``[DisplayInMainMenu("My Displayname")]`` attribute will appear in the MainMenu when the watch is opened. If you do not want it to appear so, simply remove that attribute.
 ### Important Notice
-If you execute the ``SetText()`` method when the players hand is touching/pressing a button, it will cause a loop. Instead use the ``UpdateLines()`` method. The ``UpdateLines()`` method will only set the text, and will not effect the buttons, nor lines at all. In addition keep each line down to 14 characters long, or it will go into the button. If the button is disabled increase it to 17 characters.
+If you execute the ``SetText()`` method when the players hand is touching/pressing a button, it will cause a loop. Instead use the ``UpdateLines()`` method. The ``UpdateLines()`` method will only set the text, and will not effect the buttons, nor lines at all. In addition keep each line down to 14 characters long, or it will go into the button. If the button is disabled increase it to 17 characters. Remember that is you plugin cannot work in public lobbies, you must handle a custom message.
 ### Overriding back button
 If you decide to override the back button, you MUST reset it once you are done with it. ``SetBackButtonOverride(Type MyPage)``. This method can only be called inside of the Page class, or in a subclass of it.
 ### 
