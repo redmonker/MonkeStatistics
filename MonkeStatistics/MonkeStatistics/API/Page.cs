@@ -120,7 +120,7 @@ namespace MonkeStatistics.API
             else
                 GetButtonUp(true);
             // If the scene is too high, disable the scroll down button.
-            if (CurrentScene >= TextLines.Length / EntriesPerScene - 1)
+            if (CurrentScene >= TextLines.Length / EntriesPerScene)
                 GetButtonDown(false);
             else
                 GetButtonDown(true);
