@@ -7,7 +7,7 @@ namespace SpeedBoost.Patches
     internal class PlayerPatch
     {
         [HarmonyPrefix]
-        private static void Patcj()
+        private static void Patch()
         {
             if (Main.RoomValid && Main.Enabled)
             {
@@ -15,7 +15,8 @@ namespace SpeedBoost.Patches
                 Player.Instance.maxJumpSpeed = Main.SpeedBoost;
             }
             else
-                if (Player.Instance.maxJumpSpeed = Main.SpeedBoost)
+                if (Player.Instance.maxJumpSpeed == Main.SpeedBoost)
+                Reset();
         }
 
         // Not a patch, but.... uuu where else do I put it o-o
