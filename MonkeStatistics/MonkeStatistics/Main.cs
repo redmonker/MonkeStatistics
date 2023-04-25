@@ -10,7 +10,7 @@ namespace MonkeStatistics
         public const string
             Name = "MonkeStatistics",
             Author = "Crafterbot",
-            Version = "1.0.0",
+            Version = "1.0.2",
             GUID = Author + "." + Name;
 
         private void Awake()
