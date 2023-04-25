@@ -12,7 +12,7 @@ namespace SpeedBoost
     internal class Main : BaseUnityPlugin
     {
         public const string
-            GUID = "crafterbot.speedboost",
+            GUID = "crafterbot.speedboostexample",
             Name = "SpeedBoost",
             Version = "1.0.0";
         public static bool RoomValid;

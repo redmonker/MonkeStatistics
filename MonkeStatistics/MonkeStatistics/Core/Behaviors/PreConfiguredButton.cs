@@ -32,11 +32,11 @@ namespace MonkeStatistics.Core.Behaviors
         {
             if (!_Toggling)
             {
+                _Toggling = true;
                 isOn = !isOn;
                 UpdateColor();
                 if (Info != null)
                     Info.RaiseEvent(isOn);
-                _Toggling = true;
                 yield return new WaitForSeconds(0.5f); // buffer
                 _Toggling = false;
             }
@@ -53,10 +53,16 @@ namespace MonkeStatistics.Core.Behaviors
             }
         }
 
+        #region Disabling button
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
         private void OnDisable()
         {
             StopAllCoroutines();
             GetComponent<MeshRenderer>().material = unpressedMaterial;
         }
+        #endregion
     }
 }

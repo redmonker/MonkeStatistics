@@ -46,7 +46,6 @@ namespace MonkeStatistics.API
         public void GoToMainPage() =>
             UIManager.Instance.ShowPage(typeof(Core.Pages.MainPage));
 
-
         #region Text
         public void SetTitle(string text) =>
             UIManager.Instance.MenuObj.transform.GetChild(0).Find("Title").GetComponent<Text>().text = text;
@@ -121,7 +120,7 @@ namespace MonkeStatistics.API
             else
                 GetButtonUp(true);
             // If the scene is too high, disable the scroll down button.
-            if (CurrentScene >= TextLines.Length / EntriesPerScene)
+            if (CurrentScene >= TextLines.Length / EntriesPerScene - 1)
                 GetButtonDown(false);
             else
                 GetButtonDown(true);

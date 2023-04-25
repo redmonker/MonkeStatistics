@@ -17,11 +17,8 @@ namespace MonkeStatistics
         {
             Logger.LogInfo("Init : " + Name);
             new Util.AssetLoader();
-            new Harmony(GUID).PatchAll(Assembly.GetExecutingAssembly());
-#if DEBUG
-            Logger.LogInfo("Debug mode enabled");
+            new Harmony(GUID).PatchAll(Assembly.GetExecutingAssembly()); 
             API.Registry.AddAssembly();
-#endif
         }
     }
 }

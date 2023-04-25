@@ -1,25 +1,28 @@
 ﻿using MonkeStatistics.Core.Behaviors;
-using System.Collections;
 using UnityEngine;
 
 namespace MonkeStatistics.API
 {
     internal class Button : PreConfiguredButton
     {
+        private float InitializationTime;
         public ButtonInfo Info;
         public override void Start()
         {
-            base.Start(); 
-            isOn = Info.InitialIsOn;
+            base.Start();
+            InitializationTime = Time.time;
+            if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
+                isOn = Info.InitialIsOn;
             UpdateColor();
         }
 
         public override void ButtonActivation()
         {
+            if (InitializationTime + 0.35f > Time.time)
+                return;
+
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
-            {
                 StartCoroutine(ToggleDelay(Info));
-            }
             else
             {
                 StartCoroutine(ButtonDelay());
@@ -45,7 +48,6 @@ namespace MonkeStatistics.API
         public event EventHandler ButtonPressed;
         public void RaiseEvent(bool IsOn)
         {
-            Debug.Log("Event raised " + ReturnIndex);
             object[] Args = new object[] { ReturnIndex, IsOn, buttonType };
             ButtonPressed?.Invoke(this, Args);
         }

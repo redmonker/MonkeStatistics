@@ -12,12 +12,12 @@ namespace SpeedBoost.Pages
                 Build();
             else
             {
-                AddLine("Room not valid", null);
-                AddLine("Join a modded", null);
-                AddLine("gamemode to use", null);
+                AddLine("Room not valid");
+                AddLine("Join a modded");
+                AddLine("gamemode to use.");
                 SetLines();
             }
-            SetTitle("speed Boost");
+            SetTitle("Speed Boost");
             SetAuthor("By Crafterbot");
         }
 
@@ -28,11 +28,15 @@ namespace SpeedBoost.Pages
             AddLine(1);
             AddLine($"Speed[{Main.SpeedBoost}]");
             AddLine(1);
-            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, 1, ButtonInfo.ButtonType.Press));
-            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, -1, ButtonInfo.ButtonType.Press));
-            AddLine(10);
-            AddLine("By");
-            AddLine("Crafterbot");
+            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, 2, ButtonInfo.ButtonType.Press));
+            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, -2, ButtonInfo.ButtonType.Press));
+
+            AddLine(5);
+
+            AddLine("Crazy", new ButtonInfo(Crazy, 0));
+            AddLine(1);
+            AddLine("Reset", new ButtonInfo(Reset, 0, ButtonInfo.ButtonType.Press));
+
             if (setLines)
                 SetLines();
         }
@@ -45,6 +49,24 @@ namespace SpeedBoost.Pages
         public void SpeedBoostChange(object Sender, object[] Args)
         {
             Main.SpeedBoost += (int)Args[0];
+            Build(false);
+            UpdateLines();
+        }
+
+        // Crazy
+
+        public void Crazy(object Sender, object[] Args)
+        {
+            Main.SpeedBoost = 105;
+            Build(false);
+            UpdateLines();
+        }
+
+        // Reset
+
+        public void Reset(object Sender, object[] Args)
+        {
+            Main.SpeedBoost = 1;
             Build(false);
             UpdateLines();
         }

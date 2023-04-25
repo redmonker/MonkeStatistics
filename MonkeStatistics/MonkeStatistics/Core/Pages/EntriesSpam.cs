@@ -2,8 +2,8 @@
 
 namespace MonkeStatistics.Core.Pages
 {
-    [DisplayInMainMenu("Spam Test")]
-    internal class EntriesSpam : Page
+    //[DisplayInMainMenu("Spam Test")]
+    /*internal class EntriesSpam : Page
     {
         public override void OnPageOpen()
         {
@@ -12,5 +12,5 @@ namespace MonkeStatistics.Core.Pages
                 AddLine(i.ToString());
             SetLines();
         }
-    }
+    }*/
 }
