@@ -17,18 +17,15 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
     {
         public override void OnPageOpen() // this method will execute when this page is opened through the UIManager
         {
-	    AddLine("My Line", new ButtonInfo()); // add a line
- 	    // Deprecated : AddLines(4, "hello world", new ButtonInfo); // Add multiple lines		
-	    AddLine(6, "MultipleLines", new ButtonInfo());
-	    
-	    // Note the addLines method can also add plane text by doing:
-	    AddLine("My text");
-	    // or
-	    AddLine(3); // emty spacing
-	    
- 	    SetTitle("Gorilla Scoreboard"); // sets the title field
-            SetAuthor("By Crafterbot"); // sets the author field
-            SetLines(); // sets all lines as TextLines. 
+	   SetTitle("My Mod Title"); // Sets the title field
+	   SetAuthor("By Crafterbot"); // Sets the author field
+	   
+	   AddText("my big line grouping thing idk why am I doing this, I should just quit now."); // adds text to the page, note this will be split at ever 17 characters to form a new line.
+	   AddLine("My line"); // adds a new line to the page
+	   AddLine("My Button Line", new ButtonInfo(MyEvent, 0); // adds a line with a button
+	   AddLine(2); // adds multiple lines
+	   
+	   SetText(); // sets all lines of the page, note NEVER use this on button event.
         }
 
         private void EventMethod_handler(object Sender, object[] Args)
