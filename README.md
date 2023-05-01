@@ -43,12 +43,16 @@ Now it is time to write a page. What is a page? A page is a group of lines that 
 To open another page from your page, simply execute the following method. ``MonkeStatistics.Core.UIManager.Instance.ShowPage(typeof(MyPage))``. However if you are in a class that inherits ``Page`` you can simply do ``ShowPage``. It is VERY important to remember that ever page with the ``[DisplayInMainMenu("My Displayname")]`` attribute will appear in the MainMenu when the watch is opened. If you do not want it to appear so, simply remove that attribute.
 ### Important Notice
 If you execute the ``SetText()`` method when the players hand is touching/pressing a button, it will cause a loop. Instead use the ``UpdateLines()`` method. The ``UpdateLines()`` method will only set the text, and will not effect the buttons, nor lines at all. In addition keep each line down to 14 characters long, or it will go into the button. If the button is disabled increase it to 17 characters. Remember that is you plugin cannot work in public lobbies, you must handle a custom message.
+### Public lobbies
+By default your page will not open if the user is in a none modded room. However you can override this feature by changing your main menu display attribute to this: ``[DisplayInMainMenu("Name", CanWorkInNoneModded = true)]``. It is important to note, if your plugin provides a gameplay advantage this is bannable.
 ### Overriding back button
 If you decide to override the back button, you MUST reset it once you are done with it. ``SetBackButtonOverride(Type MyPage)``. This method can only be called inside of the Page class, or in a subclass of it.
 ### 
 ### Project Info
 * Position : 0.0288 0.0267 -0.004
 * Rotation : -26.97 94.478 -93.21101
+#### Ideas:
+* Then put it on top of the button and change it to a muted icon when they’re muted - Buzz Bzzz bzz BZZZ The 18th#0431
 ## Credits & Legal
 * This mod was inspired by [ComputerInterface](https://github.com/ToniMacaroni/ComputerInterface) and [RedBrumbler](https://github.com/RedBrumbler).
 * 3D watch model by [Zulubo](http://www.zulubo.com/).
