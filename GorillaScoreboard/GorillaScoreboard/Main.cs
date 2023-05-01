@@ -16,6 +16,7 @@ namespace GorillaScoreboard
         private void Awake()
         {
             $"Init : {NAME}".Log();
+
             new Harmony(GUID).PatchAll(Assembly.GetExecutingAssembly());
             MonkeStatistics.API.Registry.AddAssembly();
         }

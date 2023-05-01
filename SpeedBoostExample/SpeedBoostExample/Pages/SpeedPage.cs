@@ -5,6 +5,7 @@ namespace SpeedBoost.Pages
     [DisplayInMainMenu("Speed Boost")]
     internal class SpeedPage : Page
     {
+        
         public override void OnPageOpen()
         {
             base.OnPageOpen();

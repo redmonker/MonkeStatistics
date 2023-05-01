@@ -11,10 +11,10 @@ namespace MonkeStatistics.API
         /// If false, it will only work in modded lobbies.
         /// </summary>
         public bool CanWorkInNoneModded;
-        public DisplayInMainMenu(string DisplayName, bool CanWorkInNoneModded = false)
+        public DisplayInMainMenu(string DisplayName)
         {
             this.DisplayName = DisplayName;
-            this.CanWorkInNoneModded = CanWorkInNoneModded;
+            //this.CanWorkInNoneModded = CanWorkInNoneModded;
         }
     }
 }

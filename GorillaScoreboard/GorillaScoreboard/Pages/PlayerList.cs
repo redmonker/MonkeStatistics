@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GorillaScoreboard.Pages
 {
-    [DisplayInMainMenu("Scoreboard", true)]
+    [DisplayInMainMenu("Scoreboard", CanWorkInNoneModded = true)]
     internal class PlayerList : Page
     {
         public override void OnPageOpen()
