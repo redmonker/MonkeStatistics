@@ -53,6 +53,7 @@ If you decide to override the back button, you MUST reset it once you are done w
 * Rotation : -26.97 94.478 -93.21101
 #### Ideas:
 * Then put it on top of the button and change it to a muted icon when they’re muted - Buzz Bzzz bzz BZZZ The 18th#0431
+* Steal [These icons](https://github.com/KyleTheScientist/GorillaSpectatorGUI/tree/master/SpectatorGUI/Resources), and add KyleTheScientist to credits.
 ## Credits & Legal
 * This mod was inspired by [ComputerInterface](https://github.com/ToniMacaroni/ComputerInterface) and [RedBrumbler](https://github.com/RedBrumbler).
 * 3D watch model by [Zulubo](http://www.zulubo.com/).
