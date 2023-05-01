@@ -11,14 +11,14 @@ namespace SpeedBoost
     [ModdedGamemode]
     internal class Main : BaseUnityPlugin
     {
-        public const string
+        internal const string
             GUID = "crafterbot.speedboostexample",
             Name = "SpeedBoost",
             Version = "1.0.0";
-        public static bool RoomValid;
-        public static bool Enabled;
+        internal static bool RoomValid;
+        internal static bool Enabled;
 
-        public static float SpeedBoost = 1.0f;
+        internal static float SpeedBoost = 1.0f;
 
         private void Awake()
         {

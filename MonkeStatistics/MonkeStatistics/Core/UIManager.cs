@@ -3,14 +3,17 @@
 */
 using MonkeStatistics.API;
 using MonkeStatistics.Core.Pages;
+using MonkeStatistics.Util;
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace MonkeStatistics.Core
 {
-    internal class UIManager
+    /// <summary>
+    /// Please do not touch this class unless you know what you are doing.
+    /// </summary>
+    public class UIManager
     {
         public static UIManager Instance;
         public static Page CurrentPage;
@@ -69,10 +72,10 @@ namespace MonkeStatistics.Core
                 Page page = (Page)Activator.CreateInstance(type);
                 page.OnPageOpen();
                 CurrentPage = page;
-                Debug.Log("Page opened : " + type.Name);
+                ("Page opened : " + type.Name).BepInLog();
             }
             else
-                Debug.LogError("Page not found : " + type.FullName);
+                ("Page not found : " + type.FullName).BepInLog(LogType.Error);
         }
         public void ClearPage()
         {
@@ -84,8 +87,14 @@ namespace MonkeStatistics.Core
         private void RegisterPages()
         {
             AllPages = API.Registry.assemblies.SelectMany(x => x.GetTypes()).Where(x => x.IsSubclassOf(typeof(Page))).ToArray();
-            foreach (Type type in AllPages)
-                Debug.Log("Registered page : " + type.Name);
+            "Registered All Pages".BepInLog();
+        }
+
+        internal void ForceClose()
+        {
+            ClearPage();
+            ShowPage(typeof(Pages.MainPage));
+            "Force Closed".BepInLog(LogType.Warning);
         }
         #endregion
     }

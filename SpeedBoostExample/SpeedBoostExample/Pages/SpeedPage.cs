@@ -8,15 +8,7 @@ namespace SpeedBoost.Pages
         public override void OnPageOpen()
         {
             base.OnPageOpen();
-            if (Main.RoomValid)
-                Build();
-            else
-            {
-                AddLine("Room not valid");
-                AddLine("Join a modded");
-                AddLine("gamemode to use.");
-                SetLines();
-            }
+            Build();
             SetTitle("Speed Boost");
             SetAuthor("By Crafterbot");
         }
@@ -28,10 +20,10 @@ namespace SpeedBoost.Pages
             AddLine(1);
             AddLine($"Speed[{Main.SpeedBoost}]");
             AddLine(1);
-            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, 2, ButtonInfo.ButtonType.Press));
-            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, -2, ButtonInfo.ButtonType.Press));
+            AddLine("Speed[+]", new ButtonInfo(SpeedBoostChange, 2));
+            AddLine("Speed[-]", new ButtonInfo(SpeedBoostChange, -2));
 
-            AddLine(5);
+            AddLine(7);
 
             AddLine("Crazy", new ButtonInfo(Crazy, 0));
             AddLine(1);

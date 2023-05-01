@@ -38,8 +38,11 @@ namespace MonkeStatistics.API
         /// A shortcut to the UIManager's ShowPage method.
         /// </summary>
         /// <param name="type">The pages class, that you wish to open.</param>
+        [Obsolete("This method is obsolete, please use ShowPage<T>() instead.")]
         public void ShowPage(Type type) =>
             UIManager.Instance.ShowPage(type);
+        public void ShowPage<T>() where T : Page =>
+            UIManager.Instance.ShowPage(typeof(T));
         /// <summary>
         /// Opens the main page.
         /// </summary>
@@ -56,6 +59,23 @@ namespace MonkeStatistics.API
         {
             for (int i = 0; i < Amount; i++)
                 AddLine(Text, Info);
+        }
+        /// <summary>
+        /// Adds raw text to the page. The text will have a enter at every 17 characters.
+        /// </summary>
+        /// <param name="Text">Text to add</param>
+        public void AddText(string Text)
+        {
+            int Characters = 17;
+            int Amount = Mathf.CeilToInt((float)Text.Length / Characters);
+            for (int i = 0; i < Amount; i++)
+            {
+                int StartIndex = i * Characters;
+                int EndIndex = StartIndex + Characters;
+                if (EndIndex > Text.Length)
+                    EndIndex = Text.Length;
+                AddLine(Text.Substring(StartIndex, EndIndex - StartIndex));
+            }
         }
         public void AddLine(string Text, ButtonInfo Info = null) =>
             TextLines = TextLines.Append(new Line(Text, Info)).ToArray();

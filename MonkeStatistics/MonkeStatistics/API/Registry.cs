@@ -1,6 +1,5 @@
-﻿using HarmonyLib;
+﻿using MonkeStatistics.Util;
 using System.Reflection;
-using UnityEngine;
 
 namespace MonkeStatistics.API
 {
@@ -13,12 +12,8 @@ namespace MonkeStatistics.API
         /// </summary>
         public static void AddAssembly()
         {
-            Debug.Log("Added assembly : " + Assembly.GetCallingAssembly().FullName);
-            Assembly[] newAssemblies = new Assembly[assemblies.Length + 1];
-            for (int i = 0; i < assemblies.Length; i++)
-                newAssemblies[i] = assemblies[i];
-            newAssemblies[newAssemblies.Length - 1] = Assembly.GetCallingAssembly();
-            assemblies = newAssemblies;
+            assemblies = assemblies.Add(Assembly.GetCallingAssembly());
+            Assembly.GetCallingAssembly().FullName.BepInLog();
         }
     }
 }

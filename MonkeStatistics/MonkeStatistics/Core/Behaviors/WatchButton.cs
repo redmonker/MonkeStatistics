@@ -5,8 +5,11 @@ namespace MonkeStatistics.Core.Behaviors
 {
     internal class WatchButton : GorillaPressableButton
     {
+        internal static WatchButton Instance;
+
         public override void Start()
         {
+            Instance = this;
             gameObject.layer = 18;
         }
         public override void ButtonActivation()
@@ -16,9 +19,7 @@ namespace MonkeStatistics.Core.Behaviors
         }
         private void Update()
         {
-            float Distance = Vector3.Distance(transform.forward, Vector3.up);
-            bool OpenMenu = Distance <= 0.65 ;
-            if (!OpenMenu && UIManager.Instance.MenuObj.activeSelf)
+            if (!GetFacingUp() && UIManager.Instance.MenuObj.activeSelf)
             {
                 UIManager.Instance.ShowPage(typeof(Pages.MainPage));
                 UIManager.Instance.MenuObj.SetActive(false);
@@ -32,6 +33,12 @@ namespace MonkeStatistics.Core.Behaviors
             yield return new WaitForSeconds(0.35f);
             isOn = false;
             UpdateColor();
+        }
+
+        internal bool GetFacingUp()
+        {
+            float Distance = Vector3.Distance(transform.forward, Vector3.up);
+            return Distance <= 0.65;
         }
     }
 }

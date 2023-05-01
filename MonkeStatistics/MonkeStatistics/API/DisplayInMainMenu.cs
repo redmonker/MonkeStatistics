@@ -6,9 +6,15 @@ namespace MonkeStatistics.API
     public class DisplayInMainMenu : Attribute
     {
         public string DisplayName;
-        public DisplayInMainMenu(string DisplayName)
+        /// <summary>
+        /// If true, this button will work in all lobbies. 
+        /// If false, it will only work in modded lobbies.
+        /// </summary>
+        public bool CanWorkInNoneModded;
+        public DisplayInMainMenu(string DisplayName, bool CanWorkInNoneModded = false)
         {
             this.DisplayName = DisplayName;
+            this.CanWorkInNoneModded = CanWorkInNoneModded;
         }
     }
 }

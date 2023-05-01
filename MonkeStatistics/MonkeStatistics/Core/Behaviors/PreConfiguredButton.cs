@@ -12,7 +12,7 @@ namespace MonkeStatistics.Core.Behaviors
             BoxCollider boxCollider = GetComponent<BoxCollider>();
             boxCollider.isTrigger = true;
             gameObject.layer = 18;
-            WardrobeItemButton wardrobeItemButton = GameObject.FindObjectOfType<WardrobeItemButton>();//.Where(x => x.name == TargetWardrobeItemButtonName).FirstOrDefault();
+            WardrobeItemButton wardrobeItemButton = GameObject.FindObjectOfType<WardrobeItemButton>();
 
             buttonRenderer = GetComponent<MeshRenderer>();
             pressedMaterial = wardrobeItemButton.pressedMaterial;
@@ -37,7 +37,7 @@ namespace MonkeStatistics.Core.Behaviors
                 UpdateColor();
                 if (Info != null)
                     Info.RaiseEvent(isOn);
-                yield return new WaitForSeconds(0.5f); // buffer
+                yield return new WaitForSeconds(0.15f); // buffer
                 _Toggling = false;
             }
         }
