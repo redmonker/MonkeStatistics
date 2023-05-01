@@ -51,6 +51,8 @@ If you decide to override the back button, you MUST reset it once you are done w
 ### Project Info
 * Position : 0.0288 0.0267 -0.004
 * Rotation : -26.97 94.478 -93.21101
+#### Ideas:
+* Then put it on top of the button and change it to a muted icon when they’re muted - Buzz Bzzz bzz BZZZ The 18th#0431
 ## Credits & Legal
 * This mod was inspired by [ComputerInterface](https://github.com/ToniMacaroni/ComputerInterface) and [RedBrumbler](https://github.com/RedBrumbler).
 * 3D watch model by [Zulubo](http://www.zulubo.com/).
