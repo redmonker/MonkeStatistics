@@ -52,8 +52,6 @@ namespace GorillaScoreboard.Pages
                 Line.muteButton.UpdateColor();
             }
             $"Muted? {PlayerPrefs.GetInt(player.UserId)}".Log();
-
-            DrawPage();
         }
 
         private bool GetIsMuted(Player player)

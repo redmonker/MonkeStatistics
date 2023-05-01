@@ -5,7 +5,7 @@
         public bool IsUp;
         public override void ButtonActivation()
         {
-            base.ButtonActivation();
+            StartCoroutine(ButtonDelay());
             if (IsUp)
             {
                 UIManager.CurrentPage.CurrentScene--;

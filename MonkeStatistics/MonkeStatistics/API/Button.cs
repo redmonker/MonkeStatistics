@@ -5,12 +5,15 @@ namespace MonkeStatistics.API
 {
     internal class Button : PreConfiguredButton
     {
-        private float InitializationTime;
+        public float InitializationTime;
         public ButtonInfo Info;
+
+        private void Awake() =>
+            InitializationTime = Time.time;
+
         public override void Start()
         {
             base.Start();
-            InitializationTime = Time.time;
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
                 isOn = Info.InitialIsOn;
             UpdateColor();
@@ -18,7 +21,7 @@ namespace MonkeStatistics.API
 
         public override void ButtonActivation()
         {
-            if (InitializationTime + 0.35f > Time.time)
+            if (GetOnInitDelay())
                 return;
 
             if (Info.buttonType == ButtonInfo.ButtonType.Toggle)
@@ -29,6 +32,11 @@ namespace MonkeStatistics.API
                 Info.RaiseEvent(true);
             }
         }
+
+        public bool GetOnInitDelay()
+        {
+            return InitializationTime + Info.InitialDelay > Time.time;
+        }
     }
 
     public class ButtonInfo
@@ -38,6 +46,11 @@ namespace MonkeStatistics.API
         /// When the button is written this will be the initial state of the button.
         /// </summary>
         public bool InitialIsOn;
+
+        /// <summary>
+        /// This field will determin how long before the button can be pressed after its drawn.
+        /// </summary>
+        public float InitialDelay;
 
         public int ReturnIndex;
         public delegate void EventHandler(object Sender, object[] Args);
@@ -60,6 +73,7 @@ namespace MonkeStatistics.API
             this.ReturnIndex = ReturnIndex;
             buttonType = Type;
             this.InitialIsOn = InitialIsOn;
+            InitialDelay = 0.1f;
         }
 
         public enum ButtonType

@@ -8,7 +8,7 @@ namespace MonkeStatistics.Core.Behaviors
 
         public override void ButtonActivation()
         {
-            base.ButtonActivation();
+            StartCoroutine(ButtonDelay());
             UIManager.Instance.ShowPage(ReturnPage);
         }
     }

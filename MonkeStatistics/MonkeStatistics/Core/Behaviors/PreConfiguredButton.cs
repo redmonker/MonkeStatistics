@@ -6,7 +6,9 @@ namespace MonkeStatistics.Core.Behaviors
 {
     internal class PreConfiguredButton : GorillaPressableButton
     {
-        private bool _Toggling;
+        public bool _Toggling;
+        public bool AllowHooking = true;
+
         public override void Start()
         {
             BoxCollider boxCollider = GetComponent<BoxCollider>();
@@ -19,27 +21,17 @@ namespace MonkeStatistics.Core.Behaviors
             unpressedMaterial = wardrobeItemButton.unpressedMaterial;
 
             buttonRenderer.material = unpressedMaterial;
-            gameObject.layer = 18;
-        }
-
-        public override void ButtonActivation()
-        {
-            base.ButtonActivation();
-            StartCoroutine(ButtonDelay());
         }
 
         public IEnumerator ToggleDelay(ButtonInfo Info = null)
         {
-            if (!_Toggling)
-            {
-                _Toggling = true;
-                isOn = !isOn;
-                UpdateColor();
-                if (Info != null)
-                    Info.RaiseEvent(isOn);
-                yield return new WaitForSeconds(0.15f); // buffer
-                _Toggling = false;
-            }
+            _Toggling = true;
+            isOn = !isOn;
+            UpdateColor();
+            if (Info != null)
+                Info.RaiseEvent(isOn);
+            yield return new WaitForSeconds(0.25f); // buffer
+            _Toggling = false;
         }
         public IEnumerator ButtonDelay()
         {
